@@ -63,7 +63,7 @@ namespace Console_Tools
         /// Gets a "password" or some other string in an empty area, when the user types it will not show, but it will still be recorded.
         /// </summary>
         /// <param name="exitkey">The key that the user must press to escape. (Will return the value the user has entered)</param>
-        public static void GetPassword(ConsoleKey exitkey = ConsoleKey.Enter)
+        public static string GetPassword(ConsoleKey exitkey = ConsoleKey.Enter)
         {
             ConsoleKey lastpressed = ConsoleKey.Backspace; // You can put any value here, just so it doesen't null out.
             StringBuilder stringBuilder = new StringBuilder();
@@ -89,6 +89,8 @@ namespace Console_Tools
                     }
                 }
             }
+
+            return stringBuilder.ToString();
         }
     }
 }
