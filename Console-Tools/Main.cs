@@ -1,4 +1,6 @@
-﻿namespace Console_Tools
+﻿using System.Text;
+
+namespace Console_Tools
 {
     public static class Main
     {
@@ -60,9 +62,33 @@
         /// <summary>
         /// Gets a "password" or some other string in an empty area, when the user types it will not show, but it will still be recorded.
         /// </summary>
-        public static void GetPassword()
+        /// <param name="exitkey">The key that the user must press to escape. (Will return the value the user has entered)</param>
+        public static void GetPassword(ConsoleKey exitkey = ConsoleKey.Enter)
         {
+            ConsoleKey lastpressed = ConsoleKey.Backspace; // You can put any value here, just so it doesen't null out.
+            StringBuilder stringBuilder = new StringBuilder();
 
+            while(lastpressed != exitkey)
+            {
+                ConsoleKeyInfo key = Console.ReadKey();
+                lastpressed = key.Key;
+
+                Console.Write("\b \b");
+
+                if(key.Key == ConsoleKey.Backspace)
+                {
+                    stringBuilder.Remove(stringBuilder.Length - 1, 1);
+                } else if(key.Key == exitkey)
+                {
+
+                } else
+                {
+                    if(key.KeyChar.ToString().Length == 1)
+                    {
+                        stringBuilder.Append(key.KeyChar);
+                    }
+                }
+            }
         }
     }
 }
