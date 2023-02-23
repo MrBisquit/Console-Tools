@@ -1,5 +1,5 @@
 # Console-Tools
-A C# Library that includes helpfull tools to use in the command prompt that includes:
+A C# Library that includes helpful tools to use in the command prompt that includes:
 - A status printer including 8 different types:
   - Failed
   - Progressing
