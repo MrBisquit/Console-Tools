@@ -92,5 +92,64 @@ namespace Console_Tools
 
             return stringBuilder.ToString();
         }
+
+        /// <summary>
+        /// Creates a new progress bar.
+        /// </summary>
+        public static ProgressBar NewProgressBar()
+        {
+            return new ProgressBar();
+        }
+
+        /// <summary>
+        /// ProgressBar class
+        /// </summary>
+        public class ProgressBar
+        {
+            public ProgressBar()
+            {
+                UpdateProgress(0);
+            }
+
+            /// <summary>
+            /// Re-writes the progressbar
+            /// </summary>
+            /// <param name="progress">A percentage (has to be 0-100, if not it will return an error.)</param>
+            public void UpdateProgress(int progress, bool newline = false)
+            {
+                if(progress > 100)
+                {
+                    throw new Exception("'progress' parameter must be between 0-100");
+                }
+
+                double bars = progress / 10;
+                if (!newline)
+                {
+                    Console.Write("\r[");
+                }
+                else
+                {
+                    Console.Write('[');
+                }
+                for (int i = 0; i < 10; i++)
+                {
+                    if(bars > i - 1)
+                    {
+                        Console.Write('#');
+                    } else
+                    {
+                        Console.Write(' ');
+                    }
+                }
+                Console.Write(']');
+                if (!newline)
+                {
+                    Console.Write(" {0}%", progress);
+                } else
+                {
+                    Console.WriteLine(" {0}%", progress);
+                }
+            }
+        }
     }
 }

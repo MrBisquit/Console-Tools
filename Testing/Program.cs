@@ -18,6 +18,13 @@ namespace Testing
             string pass = Console_Tools.Main.GetPassword();
             Console.WriteLine("You typed: " + pass);
             Console.WriteLine("Correct?");
+            Console_Tools.Main.ProgressBar pb = Console_Tools.Main.NewProgressBar(); // Not needed, you can directly create one but I thought it might be easier.
+            for (int i = 0; i < 100; i++)
+            {
+                pb.UpdateProgress(i);
+            }
+            Console.WriteLine(); // Make sure to do this after because otherwise it'll write on the same line as the finished progress bar!
+            Console_Tools.Main.PrintStatus("It works!", 7);
         }
     }
 }
